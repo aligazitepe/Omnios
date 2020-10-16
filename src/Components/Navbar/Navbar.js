@@ -15,7 +15,7 @@ export default function Navbar(props) {
         <span class="navbar-toggler-icon"></span>
       </button>
       <Link class="navbar-brand" to="/">
-        Spot
+        BEERd
       </Link>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">

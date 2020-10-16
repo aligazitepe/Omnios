@@ -5,7 +5,7 @@ import './style.css';
 
 export default ({beer, onClick}) => {
   return (
-<div class="row m-5" >
+<div class="m-5" >
   <img class=" img-custom" src={beer.image_url} alt={beer.name} />
   <div class="card-body">
     <h5 class="card-title">{beer.name}</h5>
