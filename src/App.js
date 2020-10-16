@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAllBeers , filterBeers } from "./redux/beer/beerSlice";
+import { setAllBeers, filterBeers } from "./redux/beer/beerSlice";
 
 import BeerList from "./Components/BeerList/BeerList";
 import Navbar from "./Components/Navbar/Navbar";
@@ -26,15 +26,17 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar />
-        <btn class="btn btn-primary mr-5" onClick={handleClick}>
-          ALL
-        </btn>
-        <btn class="btn btn-primary mr-5" onClick={handleClick}>
-          ABV
-        </btn>
-        <btn class="btn btn-primary" onClick={handleClick}>
-          IBU
-        </btn>
+        <div className="btn-group mt-5">
+          <btn class="btn btn-primary mr-5" onClick={handleClick}>
+            ALL
+          </btn>
+          <btn class="btn btn-primary mr-5" onClick={handleClick}>
+            ABV
+          </btn>
+          <btn class="btn btn-primary" onClick={handleClick}>
+            IBU
+          </btn>
+        </div>
         <BeerList />
       </div>
     </BrowserRouter>
