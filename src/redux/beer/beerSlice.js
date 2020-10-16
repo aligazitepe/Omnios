@@ -1,20 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const beerSlice = createSlice({
-  name: 'beers',
+  name: "beers",
   initialState: {
     value: [],
+    filter: [],
   },
   reducers: {
     setAllBeers: (state, action) => {
-       state.value = action.payload; 
+      Object.keys(action.payload).forEach((item) =>
+        state.value.push(action.payload[item])
+      );
+    },
+    filterBeers: (state, action) => {
+      const filterBy = action.payload;
+      if (filterBy === "ABV") {
+        state.filter = state.value.filter((item) => item.abv > 30);
+      } else if (filterBy === "IBU") {
+        state.filter = state.value.filter((item) => item.ibu > 30);
+      }
+      else {
+        state.filter=state.value;
+      }
     },
   },
 });
 
-export const { setAllBeers } = beerSlice.actions;
+export const { setAllBeers, filterBeers } = beerSlice.actions;
 
-
-export const selectBeers = state => state.beers;
+export const selectBeers = (state) => state.beers;
 
 export default beerSlice.reducer;

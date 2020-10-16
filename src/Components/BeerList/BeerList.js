@@ -1,8 +1,9 @@
-import React from "react";
+import React  from "react";
 import { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useSelector } from "react-redux";
 import { selectBeers } from "../../redux/beer/beerSlice";
+import Spinner from "../Spinner";
 import "./BeerList.css";
 
 import BeerCard from "../BeerCard";
@@ -14,11 +15,11 @@ export default function Home(props) {
   }, []);
 
   return (
-    <CSSTransition in={inProp} timeout={1000} classNames="my-node">
-      <div className="list_scroll">
-        {allBeers.value &&
-          allBeers.value.map((beer) => <BeerCard key={beer.id} beer={beer} />)}
-      </div>
-    </CSSTransition>
+    <div className="list_scroll">
+      {allBeers.filter[0] && (
+        allBeers.filter.map((beer) => <BeerCard key={beer.id} beer={beer} />)
+      ) 
+      }
+    </div>
   );
 }
