@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import beerReducer from "../redux/beer/beerSlice"
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    beers: beerReducer,
   },
 });
