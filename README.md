@@ -2,5 +2,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can navigate to client-redux folder and run npm install.
 Then follow these commands to run the app:<br/>
-$json-server --port 3001 --watch beerdb.json
+$json-server --port 3001 --watch beerdb.json <br/>
 $npm start
