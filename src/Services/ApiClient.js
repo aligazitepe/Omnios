@@ -6,7 +6,7 @@ export default {
   },
 };
 
-const fetchRequest = (url, headers) => {
+const fetchRequest = (url, options) => {
   return fetch(`${BASE_URL}/${url}`)
     .then((res) => (res.status <= 400 ? res : Promise.reject(res)))
     .then((res) => res.json())

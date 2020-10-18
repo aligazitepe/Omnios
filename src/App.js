@@ -13,11 +13,9 @@ import ApiClient from "./Services/ApiClient";
 
 function App() {
   const dispatch = useDispatch();
-  function handleClick(event) {
-    event.preventDefault();
-    const filterBy = event.target.innerHTML;
+  const handleClick = (filterBy) => (event) => {
     dispatch(filterBeers(filterBy));
-  }
+  };
   useEffect(() => {
     ApiClient.getallBeers().then((res) => dispatch(setAllBeers(res)));
   }, []);
@@ -27,13 +25,13 @@ function App() {
       <div className="App">
         <Navbar />
         <div className="btn-group mt-5">
-          <btn class="btn btn-primary mr-5" onClick={handleClick}>
+          <btn class="btn btn-primary mr-5" onClick={handleClick()}>
             ALL
           </btn>
-          <btn class="btn btn-primary mr-5" onClick={handleClick}>
+          <btn class="btn btn-primary mr-5" onClick={handleClick("abv")}>
             ABV
           </btn>
-          <btn class="btn btn-primary" onClick={handleClick}>
+          <btn class="btn btn-primary" onClick={handleClick("ibu")}>
             IBU
           </btn>
         </div>

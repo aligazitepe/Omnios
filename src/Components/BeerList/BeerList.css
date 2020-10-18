@@ -15,7 +15,8 @@
   opacity: 0;
   transition: opacity 1500ms;
 }
-.list_scroll{
+
+.list_scroll {
   display: flex;
   flex-wrap: nowrap;
   margin-bottom: 5vh;
@@ -56,5 +57,3 @@
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
-
-
