@@ -14,14 +14,18 @@ import ApiClient from "./Services/ApiClient";
 function App() {
   const page = "1";
   const perPage = "80";
-  const  [filterAmount,setFilterAmount] = useState("0")
+  const [filterType, setFilterType] = useState("")
+  const [filterAmount, setfilterAmount] = useState("0");
   const dispatch = useDispatch();
-  const handleChange = (event) => {
-    console.log(event.target.value)
-    setFilterAmount(event.target.value)
+  const handleChange = (option) => (event) => {
+    if(option === "type"){
+      setFilterType(event.target.value)
+    }
+    else if (option === "amount")
+    setfilterAmount(event.target.value);
   };
-  const handleClick = (filterBy) => (event) => {
-    dispatch(filterBeers(filterBy));
+  const handleClick = (filterOptions) => (event) => {
+    dispatch(filterBeers(filterOptions));
   };
   useEffect(() => {
     ApiClient.getallBeers(page, perPage).then((res) => {
@@ -34,54 +38,45 @@ function App() {
       <div className="App">
         <Navbar />
         <div className="">
-        {/* TODO:Refactor input groups to reusable component */}
-          <div class="input-group mb-3 col-sm-6">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">
-                ABV {'>'}
-              </label>
+          {/* TODO:Refactor input groups to reusable component */}
+          <div className="row">
+          <div class="input-group mb-3 mt-3 col-sm-6 input-group-custom">
+          <select
+                class="custom-select mt-2"
+                id="inputGroupSelect01"
+                onChange={handleChange("type")}
+              >
+                <option selected>Choose filter Type...</option>
+                <option value="abv">ABV </option>
+                <option value="ibu">IBU </option>
+              </select>
+              <h1 className="ml-2 mr-2">{">"}</h1>
+              <select
+                class="custom-select mt-2"
+                id="inputGroupSelect02"
+                onChange={handleChange("amount")}
+              >
+                <option selected>Choose Amount...</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+              <button
+                class="btn btn-primary ml-3"
+                onClick={handleClick({
+                  filterBy: filterType,
+                  filterAmount: filterAmount,
+                })}
+              >
+                Filter
+              </button>
             </div>
-            <select
-              class="custom-select"
-              id="inputGroupSelect01"
-              onChange={handleChange}
-            >
-              <option selected>Choose...</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-            </select>
-            <button class="btn btn-primary" onClick={handleClick({filterBy:"abv",filterAmount: filterAmount})}>
-              ABV
-            </button>
           </div>
-          <div class="input-group mb-3 col-sm-6">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">
-                IBU {'>'}
-              </label>
-            </div>
-            <select
-              class="custom-select"
-              id="inputGroupSelect01"
-              onChange={handleChange}
-            >
-              <option selected>Choose...</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-            </select>
-            <button class="btn btn-primary" onClick={handleClick({filterBy:"ibu",filterAmount: filterAmount})}>
-              IBU
-            </button>
-          </div>
-          <div className="row-sm-12 mt-2 ">
+          <div className="col-sm-12 mt-2 ">
             <button class="btn btn-primary " onClick={handleClick()}>
-              Clear Filters
+              Clear Filter
             </button>
           </div>
         </div>
