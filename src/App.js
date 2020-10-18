@@ -12,14 +12,19 @@ import "./App.css";
 import ApiClient from "./Services/ApiClient";
 
 function App() {
-  const page=1;
-  const perPage="80";
+  const page = "1";
+  const perPage = "80";
+  const  [filterAmount,setFilterAmount] = useState("0")
   const dispatch = useDispatch();
+  const handleChange = (event) => {
+    console.log(event.target.value)
+    setFilterAmount(event.target.value)
+  };
   const handleClick = (filterBy) => (event) => {
     dispatch(filterBeers(filterBy));
   };
   useEffect(() => {
-    ApiClient.getallBeers(page,perPage).then((res) => {
+    ApiClient.getallBeers(page, perPage).then((res) => {
       dispatch(setAllBeers(res));
     });
   }, []);
@@ -28,16 +33,57 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar />
-        <div className="btn-group mt-5">
-          <button class="btn btn-primary mr-5" onClick={handleClick()}>
-            ALL
-          </button>
-          <button class="btn btn-primary mr-5" onClick={handleClick("abv")}>
-            ABV
-          </button>
-          <button class="btn btn-primary" onClick={handleClick("ibu")}>
-            IBU
-          </button>
+        <div className="">
+          <div class="input-group mb-3 col-sm-6">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">
+                ABV {'>'}
+              </label>
+            </div>
+            <select
+              class="custom-select"
+              id="inputGroupSelect01"
+              onChange={handleChange}
+            >
+              <option selected>Choose...</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+            </select>
+            <button class="btn btn-primary" onClick={handleClick({filterBy:"abv",filterAmount: filterAmount})}>
+              ABV
+            </button>
+          </div>
+          <div class="input-group mb-3 col-sm-6">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">
+                IBU {'>'}
+              </label>
+            </div>
+            <select
+              class="custom-select"
+              id="inputGroupSelect01"
+              onChange={handleChange}
+            >
+              <option selected>Choose...</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+            </select>
+            <button class="btn btn-primary" onClick={handleClick({filterBy:"ibu",filterAmount: filterAmount})}>
+              IBU
+            </button>
+          </div>
+          <div className="row-sm-12 mt-2 ">
+            <button class="btn btn-primary " onClick={handleClick()}>
+              Clear Filters
+            </button>
+          </div>
+
         </div>
         <BeerList />
       </div>

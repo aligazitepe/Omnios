@@ -8,19 +8,18 @@ export const beerSlice = createSlice({
   },
   reducers: {
     setAllBeers: (state, action) => {
-      console.log(action.payload)
-      action.payload.forEach((item) =>
-        state.value.push(item)
-      );
-      state.shown=new Array(...state.value);
+      action.payload.forEach((item) => state.value.push(item));
+      state.shown = new Array(...state.value);
     },
     filterBeers: (state, action) => {
-      const filterBy = action.payload;
-      if (filterBy) {
-        state.shown = state.value.filter((item) => item[filterBy] > 10 );
-      } 
-      else {
-        state.shown=state.value;
+      console.log(action.payload);
+      if (action.payload && action.payload.filterAmount !== "Choose...") {
+        const { filterBy, filterAmount } = action.payload;
+        state.shown = state.value.filter(
+          (item) => item[filterBy] > filterAmount
+        );
+      } else {
+        state.shown = state.value;
       }
     },
   },
