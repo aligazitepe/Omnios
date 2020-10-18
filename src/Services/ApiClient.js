@@ -1,8 +1,8 @@
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://api.punkapi.com/v2";
 
 export default {
   getallBeers: () => {
-    return fetchRequest(`beers`);
+    return fetchRequest(`beers`,);
   },
 };
 

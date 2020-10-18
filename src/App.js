@@ -17,7 +17,9 @@ function App() {
     dispatch(filterBeers(filterBy));
   };
   useEffect(() => {
-    ApiClient.getallBeers().then((res) => dispatch(setAllBeers(res)));
+    ApiClient.getallBeers().then((res) => {
+      dispatch(setAllBeers(res));
+    });
   }, []);
 
   return (
