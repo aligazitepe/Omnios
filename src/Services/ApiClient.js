@@ -1,8 +1,8 @@
 const BASE_URL = "https://api.punkapi.com/v2";
 
 export default {
-  getallBeers: () => {
-    return fetchRequest(`beers`,);
+  getallBeers: (page,perPage) => {
+    return fetchRequest(`beers?page=${page}&per_page=${perPage}`,);
   },
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAllBeers, filterBeers } from "./redux/beer/beerSlice";
@@ -12,12 +12,14 @@ import "./App.css";
 import ApiClient from "./Services/ApiClient";
 
 function App() {
+  const page=1;
+  const perPage="80";
   const dispatch = useDispatch();
   const handleClick = (filterBy) => (event) => {
     dispatch(filterBeers(filterBy));
   };
   useEffect(() => {
-    ApiClient.getallBeers().then((res) => {
+    ApiClient.getallBeers(page,perPage).then((res) => {
       dispatch(setAllBeers(res));
     });
   }, []);
