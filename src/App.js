@@ -34,6 +34,7 @@ function App() {
       <div className="App">
         <Navbar />
         <div className="">
+        {/* TODO:Refactor input groups to reusable component */}
           <div class="input-group mb-3 col-sm-6">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">
@@ -83,7 +84,6 @@ function App() {
               Clear Filters
             </button>
           </div>
-
         </div>
         <BeerList />
       </div>
