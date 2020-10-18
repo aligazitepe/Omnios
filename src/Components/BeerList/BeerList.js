@@ -12,9 +12,9 @@ export default function Home(props) {
 
   return (
     <div>
-      {allBeers.filter.length ? (
+      {allBeers.shown.length ? (
         <div className="list_scroll">
-          {allBeers.filter.map((beer) => (
+          {allBeers.shown.map((beer) => (
             <BeerCard key={beer.id} beer={beer} />
           ))}
         </div>

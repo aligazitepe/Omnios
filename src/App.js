@@ -27,15 +27,15 @@ function App() {
       <div className="App">
         <Navbar />
         <div className="btn-group mt-5">
-          <btn class="btn btn-primary mr-5" onClick={handleClick()}>
+          <button class="btn btn-primary mr-5" onClick={handleClick()}>
             ALL
-          </btn>
-          <btn class="btn btn-primary mr-5" onClick={handleClick("abv")}>
+          </button>
+          <button class="btn btn-primary mr-5" onClick={handleClick("abv")}>
             ABV
-          </btn>
-          <btn class="btn btn-primary" onClick={handleClick("ibu")}>
+          </button>
+          <button class="btn btn-primary" onClick={handleClick("ibu")}>
             IBU
-          </btn>
+          </button>
         </div>
         <BeerList />
       </div>

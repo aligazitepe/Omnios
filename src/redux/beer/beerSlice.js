@@ -4,7 +4,7 @@ export const beerSlice = createSlice({
   name: "beers",
   initialState: {
     value: [],
-    filter: [],
+    shown: [],
   },
   reducers: {
     setAllBeers: (state, action) => {
@@ -12,17 +12,15 @@ export const beerSlice = createSlice({
       action.payload.forEach((item) =>
         state.value.push(item)
       );
-      state.filter=new Array(...state.value);
+      state.shown=new Array(...state.value);
     },
     filterBeers: (state, action) => {
       const filterBy = action.payload;
-      if (filterBy === "ABV") {
-        state.filter = state.value.filter((item) => item.abv > 10 );
-      } else if (filterBy === "IBU") {
-        state.filter = state.value.filter((item) => item.ibu > 10);
-      }
+      if (filterBy) {
+        state.shown = state.value.filter((item) => item[filterBy] > 10 );
+      } 
       else {
-        state.filter=state.value;
+        state.shown=state.value;
       }
     },
   },
