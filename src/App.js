@@ -46,7 +46,7 @@ function App() {
                 id="inputGroupSelect01"
                 onChange={handleChange("type")}
               >
-                <option selected>Choose filter Type...</option>
+                <option selected disabled>Choose filter Type...</option>
                 <option value="abv">ABV </option>
                 <option value="ibu">IBU </option>
               </select>
@@ -56,12 +56,15 @@ function App() {
                 id="inputGroupSelect02"
                 onChange={handleChange("amount")}
               >
-                <option selected>Choose Amount...</option>
+                <option selected disabled>Choose Amount...</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
                 <option value="40">40</option>
                 <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
               </select>
               <button
                 class="btn btn-primary ml-3"
