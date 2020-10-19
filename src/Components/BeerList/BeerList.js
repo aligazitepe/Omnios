@@ -8,10 +8,8 @@ import "./BeerList.css";
 import BeerCard from "../BeerCard";
 export default function Home(props) {
   const allBeers = useSelector(selectBeers);
-  useEffect(() => {}, []);
-
   return (
-    <div>
+    <div >
       {allBeers.shown.length ? (
         <div className="list_scroll">
           {allBeers.shown.map((beer) => (

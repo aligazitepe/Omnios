@@ -8,7 +8,7 @@ export const beerSlice = createSlice({
   },
   reducers: {
     setAllBeers: (state, action) => {
-      action.payload.forEach((item) => state.value.push(item));
+      action.payload && action.payload.forEach((item) => state.value.push(item));
       state.shown = state.value;
     },
     filterBeers: (state, action) => {

@@ -28,7 +28,7 @@ function App() {
     dispatch(filterBeers(filterOptions));
   };
   useEffect(() => {
-    ApiClient.getallBeers(page, perPage).then((res) => {
+    ApiClient.getallBeers().then((res) => {
       dispatch(setAllBeers(res));
     });
   }, []);
@@ -67,7 +67,7 @@ function App() {
                 <option value="80">80</option>
               </select>
               <button
-                class="btn btn-primary ml-3"
+                class="btn btn-primary ml-3 mt-2 mb-2"
                 onClick={handleClick({
                   filterBy: filterType,
                   filterAmount: filterAmount,
