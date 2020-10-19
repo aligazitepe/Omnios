@@ -3,7 +3,7 @@ export default {
   getallBeers: () => {
     const page= "1";
     const perPage ="80"
-    return fetchRequest(`beers?page=1&per_page=50`,);
+    return fetchRequest(`beers?page=${page}&per_page=${perPage}`,);
   },
 };
 

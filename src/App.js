@@ -12,8 +12,6 @@ import "./App.css";
 import ApiClient from "./Services/ApiClient";
 
 function App() {
-  const page = "1";
-  const perPage = "80";
   const [filterType, setFilterType] = useState("");
   const [filterAmount, setfilterAmount] = useState("0");
   const dispatch = useDispatch();
@@ -24,10 +22,6 @@ function App() {
   };
   const handleClick = (filterOptions) => (event) => {
     dispatch(filterBeers(filterOptions));
-  };
-  const handleCarousel = (event) => {
-    event.preventDefault();
-    window.scrollBy(100, 0);
   };
   useEffect(() => {
     ApiClient.getallBeers().then((res) => {
@@ -90,10 +84,8 @@ function App() {
           </div>
         </div>
         <div className="col-sm-12">
-
-            <BeerList />
+          <BeerList />
         </div>
-
       </div>
     </BrowserRouter>
   );
