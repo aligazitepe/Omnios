@@ -4,7 +4,7 @@ import "./style.css";
 
 export default ({ beer }) => {
   return (
-    <div class="card  m-3 col-4 col-sm-4 col-md-3 col-lg-2">
+    <div class="card  m-3 mb-5 mt-5 col-6 col-sm-3 col-lg-2 ">
       <div className="row-sm-4 mt-5  ">
         <img
           class="img img-fluid img-custom  "

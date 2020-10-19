@@ -14,18 +14,20 @@ import ApiClient from "./Services/ApiClient";
 function App() {
   const page = "1";
   const perPage = "80";
-  const [filterType, setFilterType] = useState("")
+  const [filterType, setFilterType] = useState("");
   const [filterAmount, setfilterAmount] = useState("0");
   const dispatch = useDispatch();
   const handleChange = (option) => (event) => {
-    if(option === "type"){
-      setFilterType(event.target.value)
-    }
-    else if (option === "amount")
-    setfilterAmount(event.target.value);
+    if (option === "type") {
+      setFilterType(event.target.value);
+    } else if (option === "amount") setfilterAmount(event.target.value);
   };
   const handleClick = (filterOptions) => (event) => {
     dispatch(filterBeers(filterOptions));
+  };
+  const handleCarousel = (event) => {
+    event.preventDefault();
+    window.scrollBy(100, 0);
   };
   useEffect(() => {
     ApiClient.getallBeers().then((res) => {
@@ -40,13 +42,15 @@ function App() {
         <div className="">
           {/* TODO:Refactor input groups to reusable component */}
           <div className="row">
-          <div class="input-group mb-3 mt-3 col-sm-6 input-group-custom">
-          <select
+            <div class="input-group mb-3 mt-3 col-sm-6 input-group-custom">
+              <select
                 class="custom-select mt-2"
                 id="inputGroupSelect01"
                 onChange={handleChange("type")}
               >
-                <option selected disabled>Choose filter Type...</option>
+                <option selected disabled>
+                  Choose filter Type...
+                </option>
                 <option value="abv">ABV </option>
                 <option value="ibu">IBU </option>
               </select>
@@ -56,7 +60,9 @@ function App() {
                 id="inputGroupSelect02"
                 onChange={handleChange("amount")}
               >
-                <option selected disabled>Choose Amount...</option>
+                <option selected disabled>
+                  Choose Amount...
+                </option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
@@ -83,7 +89,11 @@ function App() {
             </button>
           </div>
         </div>
-        <BeerList />
+        <div className="col-sm-12">
+
+            <BeerList />
+        </div>
+
       </div>
     </BrowserRouter>
   );
