@@ -14,9 +14,9 @@ export const beerSlice = createSlice({
     },
     filterBeers: (state, action) => {
       if (action.payload) {
-        const { filterBy, filterAmount } = action.payload;
+        const { filterType, filterAmount } = action.payload;
         state.shown = state.value.filter(
-          (item) => item[filterBy] > filterAmount
+          (item) => item[filterType] > filterAmount
         );
       } else {
         state.shown = state.value;

@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 export default function Navbar(props) {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -24,7 +24,7 @@ export default function Navbar(props) {
             <a class="nav-link" href="/">
               Home <span class="sr-only">(current)</span>
             </a>
-         </li>
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input
