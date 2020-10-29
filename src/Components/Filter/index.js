@@ -2,41 +2,50 @@ import React from "react";
 
 import "./style.css";
 
-export default ({ resetFilter, setFilter, handleChange }) => {
+export default ({
+  handleChange,
+  filterFunctions,
+  filterType,
+  filterAmount,
+}) => {
   const filterValues = [10, 20, 30, 40, 50, 60, 70, 80];
   return (
     <div className="row">
-      <div class="input-group mb-3 mt-3 col-sm-10 m-5 input-group-custom">
+      <div className="input-group mb-3 mt-3 col-sm-10 m-5 input-group-custom">
         <select
-          class="custom-select mt-2"
+          className="custom-select mt-2"
           id="inputGroupSelect01"
-          onChange={handleChange("type")}
+          onChange={handleChange(filterFunctions.setFilterType)}
+          value={filterType}
         >
-          <option selected disabled>
-            Choose filter Type...
+          <option disabled value="">Choose filter Type...</option>
+          <option value="abv" key="abv">
+            ABV{" "}
           </option>
-          <option value="abv">ABV </option>
-          <option value="ibu">IBU </option>
+          <option value="ibu" key="ibu">
+            IBU{" "}
+          </option>
         </select>
         <h1 className="ml-2 mr-2">{">"}</h1>
         <select
-          class="custom-select mt-2"
+          className="custom-select mt-2"
           id="inputGroupSelect02"
-          onChange={handleChange("amount")}
+          onChange={handleChange(filterFunctions.setFilterAmount)}
+          value={filterAmount}
         >
-          <option selected disabled>
-            Choose Amount...
-          </option>
+          <option disabled value="">Choose Amount...</option>
           {filterValues.map((value) => (
-            <option value={value}>{value}</option>
+            <option value={value} key={value}>
+              {value}
+            </option>
           ))}
         </select>
-        <button class="btn btn-primary ml-3 mt-2 mb-2" onClick={setFilter}>
-          Filter
-        </button>
       </div>
       <div className="col-sm-2 m-auto">
-        <button class="btn btn-primary " onClick={resetFilter}>
+        <button
+          className="btn btn-primary "
+          onClick={filterFunctions.resetFilter}
+        >
           Clear Filter
         </button>
       </div>

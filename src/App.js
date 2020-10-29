@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setAllBeers, filterBeers } from "./redux/beer/beerSlice";
 
 import BeerList from "./Components/BeerList/BeerList";
 import Navbar from "./Components/Navbar/Navbar";
@@ -13,25 +11,24 @@ import "./App.css";
 import ApiClient from "./Services/ApiClient";
 
 function App() {
+  const [allBeers,setAllBeers]=useState({})
   const [filterType, setFilterType] = useState("");
-  const [filterAmount, setfilterAmount] = useState("0");
-  const dispatch = useDispatch();
-  const handleChange = (option) => (event) => {
-    if (option === "type") {
-      setFilterType(event.target.value);
-    } else if (option === "amount") {
-      setfilterAmount(event.target.value);
-    }
+  const [filterAmount, setFilterAmount] = useState("");
+  const resetFilter = function () {
+    setFilterType("");
+    setFilterAmount("");
   };
-  const setFilter = (e) => {
-    dispatch(filterBeers({ filterType, filterAmount }));
+  const filterFunctions = {
+    resetFilter,
+    setFilterType,
+    setFilterAmount,
   };
-  const resetFilter = (e) => {
-    dispatch(filterBeers());
-  };
+  const handleChange = (filterFunction) => (event) =>
+    filterFunction(event.target.value);
+
   useEffect(() => {
     ApiClient.getallBeers().then((res) => {
-      dispatch(setAllBeers(res));
+      setAllBeers(res)
     });
   }, []);
 
@@ -41,13 +38,14 @@ function App() {
         <Navbar />
         <div className="">
           <Filter
-            resetFilter={resetFilter}
-            setFilter={setFilter}
+            filterAmount={filterAmount}
+            filterType={filterType}
+            filterFunctions={filterFunctions}
             handleChange={handleChange}
           ></Filter>
         </div>
         <div className="col-sm-10 offset-sm-1">
-          <BeerList />
+          <BeerList allBeers={allBeers} filterType={filterType} filterAmount={filterAmount} />
         </div>
       </div>
     </BrowserRouter>
