@@ -4,10 +4,10 @@ import "./style.css";
 
 export default ({ beer }) => {
   return (
-    <div className="card  m-3 mb-5 mt-5 col-6 col-sm-3 col-lg-2 ">
-      <div className="row-sm-4 mt-5  ">
+    <div className="card m-3 mb-5 mt-5 col-6 col-sm-3 col-lg-2">
+      <div className="row-sm-4 mt-5">
         <img
-          className="img img-fluid img-custom  "
+          className="img img-fluid img-custom "
           src={beer.image_url}
           alt={beer.name}
         />
