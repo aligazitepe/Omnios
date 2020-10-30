@@ -3,14 +3,15 @@ import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import { setBeers } from "./redux/actions";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import VisibleBeerList from './redux/Containers/VisibleBeerList'
 import "./App.css";
 
 import ApiClient from "./Services/ApiClient";
 import FilterLink from "./redux/Containers/FilterLink";
 
-function App({ dispatch }) {
+function App() {
+  const dispatch=useDispatch()
   useEffect(() => {
     ApiClient.getallBeers().then((res) => {
       dispatch(setBeers(res));
@@ -32,4 +33,4 @@ function App({ dispatch }) {
   );
 }
 
-export default connect()(App);
+export default App;
